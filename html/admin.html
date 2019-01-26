@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" class="fullscreen column">
+      <form class="column" @submit="createClass">
+        <h2>create a new class</h2>
+        <input v-model="newClassName" />
+        <button action="submit">submit</button>
+      </form>
+      <classtag v-for="tempClass in classes" :tempclass="tempClass"></classtag>
+      <div class="column">
+        <h2>upload test file</h2>
+        <input v-if="!file" type="file" @change="handleFile" />
+        <button v-if="file != null" @click="uploadTest">upload {{file.name}}</button>
+      </div>
+      <span v-if="false">
+        <div div id="newUserWrapper" class="column">
+          <h3>Add A New User</h3>
+          <form id="newUserForm" @submit="addNewUser" class="column">
+            <input placeholder="name" name="name" id="newUserIn" v-model="newUserName" />
+            <button action="submit" @click="addNewUser">submit</button>
+            <span>{{newUserCode}}</span>
+          </form>
+        </div>
+        <h2>current class</h2>
+        <div v-for="tempUser in users" class="row">
+          <h3>{{tempUser.name}} {{tempUser.code}}</h3>
+        </div>
+      </div>
+    </span>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+.row, .column, .fullscreen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  /* min-height: min-content !important; */
+  overflow: auto;
+}
+.row, .column{
+  /* max-height: min-content !important; */
+}
+.fullscreen{
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /* padding-bottom: 5rem; */
+}
+.row{
+  flex-direction: row;
+}
+.column{
+  flex-direction: column;
+}
+.bigInput{
+  text-align: center;
+  transform: scale(2);
+  margin-bottom: 2rem;
+}
+.project{
+  width: 60rem;
+}
+.noBackground{
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+.textarea{
+  width: 60rem !important;
+  height: 20rem !important;
+}
+.fileArea{
+  padding: 4rem;
+  border: .2rem dashed lightgrey;
+  border-radius: .5rem;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all .2s;
+}
+.fileAreaHover{
+  border: .2rem dashed blue !important;
+  background-color: lightcyan !important;
+  padding: 4rem;
+  border-radius: .5rem;
+  transition: all .2s;
+}
+.projectWrapper{
+  padding: 0px !important;
+  margin: 1rem;
+}
+.check, .cross{
+  color: green;
+  font-size: 2rem;
+}
+.cross{
+  color: red !important;
+}
+
+pre{
+  background-color: ghostwhite;
+}
+
+#projectTitleIn{
+  width: 60rem;
+}
+#copyIn{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: 100%;
+}

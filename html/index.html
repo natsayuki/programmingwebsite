@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Programming Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="fullscreen column" v-if="!userLoggedIn">
+        <form @submit="loginUserWithCode" class="column">
+          <h1>Enter your Student Code</h1>
+          <input name="code" v-model="userCode" placeholder="code"  class="bigInput" maxlength="5" />
+          <button @click="loginUserWithCode">submit</button>
+        </form>
+      </div>
+      <div class="fullscreen  column" v-if="userLoggedIn">
+        <h1>Logged in as {{userName}}</h1>
+        <h2>My Projects</h2>
+        <project v-for="tempProject in userProjects" :project="tempProject" :name="userName" :tests="tests"></project>
+        <h3 v-if="userProjects.length == 0">You have no projects</h3>
+        <div id="" :class="dragenter ? 'fileAreaHover' : 'fileArea'" @dragover="handleDragover" @dragleave="dragenter = false" @drop="handleDrop">
+          <form v-if="!hasFile">
+            <h2>Upload A File</h2>
+            <input type="file" id="fileIn" @change="handleUpload" />
+          </form>
+          <span v-if="hasFile" class="column">
+            {{fileName}}
+            <md-button class="md-raised md-primary" @click="createProjectFromFile">upload</md-button>
+          </span>
+        </div>
+        <span v-if="false">
+          <form id="newProjectForm" class="column" @submit="submitNewPost">
+            <h2>Submit A New Project</h2>
+            <md-field>
+              <label>title</label>
+              <md-input v-model="projectTitle"></md-input>
+            </md-field>
+            <md-field>
+              <label>Code here!</label>
+              <md-textarea class="textarea" v-model="projectContent"></md-textarea>
+            </md-field>
+            <md-button class="md-raised md-primary" @click="submitNewPost">submit</md-button>
+          </form>
+        </span>
+      </div>
+      <input id="copyIn" :value="copyValue" />
+      <md-snackbar :md-duration="4000" :md-active.sync="showSnack" md-persistent>
+        <span>{{snackMessage}}</span>
+        <md-button class="md-primary" @click="showSnack = false"> DISMISS</md-button>
+      </md-snackbar>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-material@beta"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
